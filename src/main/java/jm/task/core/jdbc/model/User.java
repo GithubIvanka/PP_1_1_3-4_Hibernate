@@ -1,26 +1,19 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+@Entity
+@Table(name = "Users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
     private String lastName;
-
-    @Column
     private Byte age;
-
     @Override
     public String toString() {
-        return "User{" + "id: " + id + ", name: '" + name + '\'' + ", lastName='" + lastName + '\'' + ", age=" + age + '}';
+        return String.format("User{id: %d, Name: '%s', Last Name: '%s', age + age: %d}", id, name, lastName, age);
     }
 
     public User() {
@@ -40,7 +33,6 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
