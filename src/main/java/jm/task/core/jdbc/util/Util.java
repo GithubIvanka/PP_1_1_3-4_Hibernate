@@ -41,11 +41,14 @@ public class Util {
             properties.put(Environment.PASS, password);
             properties.put(Environment.DIALECT, dialect);
             properties.put(Environment.SHOW_SQL, "true");
+            properties.put(Environment.FORMAT_SQL, "true");
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-            properties.put(Environment.HBM2DDL_AUTO, "update");
+//            properties.put(Environment.HBM2DDL_AUTO, "update");
 
             // Create configuration
-            Configuration configuration = new Configuration().setProperties(properties).addAnnotatedClass(User.class);
+            Configuration configuration = new Configuration()
+                    .setProperties(properties)
+                    .addAnnotatedClass(User.class);
 
             // Create ServiceRegistry
 //            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
