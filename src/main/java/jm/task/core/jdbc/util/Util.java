@@ -45,15 +45,19 @@ public class Util {
             properties.put(Environment.HBM2DDL_AUTO, "update");
 
             // Create configuration
-            Configuration config = new Configuration().setProperties(properties).addAnnotatedClass(User.class);
+            Configuration configuration = new Configuration().setProperties(properties).addAnnotatedClass(User.class);
 
             // Create ServiceRegistry
-            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .applySettings(config.getProperties())
-                    .build();
+//            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+//                    .applySettings(config.getProperties())
+//                    .build();
 
-            sessionFactory = config.buildSessionFactory(serviceRegistry);
+//            sessionFactory = config.buildSessionFactory(serviceRegistry);
+            sessionFactory = configuration.buildSessionFactory();
         }
         return sessionFactory;
+    }
+    public static void closeSessionFactory() {
+        sessionFactory.close();
     }
 }
