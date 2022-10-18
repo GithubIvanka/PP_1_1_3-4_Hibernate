@@ -47,7 +47,6 @@ public class Util {
                     .setProperties(properties)
                     .addAnnotatedClass(User.class);
 
-//            sessionFactory = config.buildSessionFactory(serviceRegistry);
             sessionFactory = configuration.buildSessionFactory();
         }
         return sessionFactory;
