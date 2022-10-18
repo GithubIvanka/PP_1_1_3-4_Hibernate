@@ -26,7 +26,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public void dropUsersTable() {
         try (Statement statement = Util.getMySQLConnection().createStatement()) {
-            String query = "DROP TABLE IF EXISTS simplehr.users";
+            String query = "DROP TABLE IF EXISTS users";
             statement.executeUpdate(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -34,7 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public void saveUser(String name, String lastName, byte age) {
         try (Statement statement = Util.getMySQLConnection().createStatement()) {
-            String query = "INSERT INTO simplehr.users (name, lastName, age) values (" +
+            String query = "INSERT INTO users (name, lastName, age) values (" +
                     "'" + name + "'," +
                     "'" + lastName + "'," +
                     age + ");";
@@ -46,7 +46,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public void removeUserById(long id) {
         try (Statement statement = Util.getMySQLConnection().createStatement()) {
-            String query = "DELETE FROM simplehr.users WHERE id = " + id + ";";
+            String query = "DELETE IF EXIST FROM simplehr.users WHERE id = " + id + ";";
             statement.executeUpdate(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -54,7 +54,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String query = "SELECT * FROM simplehr.users;";
+        String query = "SELECT * FROM users;";
         try (Statement statement = Util.getMySQLConnection().createStatement();
                 ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {

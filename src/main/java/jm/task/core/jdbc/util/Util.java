@@ -2,8 +2,6 @@ package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
@@ -43,17 +41,11 @@ public class Util {
             properties.put(Environment.SHOW_SQL, "true");
             properties.put(Environment.FORMAT_SQL, "true");
             properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-//            properties.put(Environment.HBM2DDL_AUTO, "update");
 
             // Create configuration
             Configuration configuration = new Configuration()
                     .setProperties(properties)
                     .addAnnotatedClass(User.class);
-
-            // Create ServiceRegistry
-//            StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-//                    .applySettings(config.getProperties())
-//                    .build();
 
 //            sessionFactory = config.buildSessionFactory(serviceRegistry);
             sessionFactory = configuration.buildSessionFactory();
